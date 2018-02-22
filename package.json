@@ -1,0 +1,19 @@
+{
+  "name": "fe-bootup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jackson Isack <jacksonisack@gmail.com>",
+  "license": "ISC",
+  "bin": {
+    "fe-bootup": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "commander": "^2.14.1",
+    "nodegit": "^0.20.3"
+  }
+}
