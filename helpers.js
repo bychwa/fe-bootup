@@ -5,22 +5,21 @@ const inquirer = require('inquirer');
 const constants = require('./constants');
 const prompt = inquirer.prompt;
 
-const writeTo = (file, data) => {
+const writeTo = function (file, data) {
   fs.writeFileSync(file, JSON.stringify(data));
 };
 
-const startProject = (name, options = {}) => {
+const startProject = function (name, options = {}) {
   console.log('INIT:', chalk.blue(`initializing '${name}' project...`));
   const projectDir = `${process.cwd()}/${name}`;
   git
     .Clone(constants.templateUrl, projectDir)
     .then(() => {
       const pkgJsonFilename = `${projectDir}/package.json`;
-      const pkgData = {
-        ...require(pkgJsonFilename),
-        name,
-        repository: undefined
-      }
+      const pkgJson = require(pkgJsonFilename);
+      const pkgData = Object.assign({}, pkgJson, {
+        name
+      });
       writeTo(pkgJsonFilename, pkgData)
       console.log('SUCCESS!: ', chalk.blue(`cd ./${name}`));
     }).catch(error => {
@@ -28,11 +27,11 @@ const startProject = (name, options = {}) => {
     });
 };
 
-const renameProject = (name, options = {}) => {
+const renameProject = function (name, options = {}) {
   console.log(chalk.red('// TODO: Renaming the project'))
 };
 
-const defaultPrompter = (name, options = {}) => {
+const defaultPrompter = function (name, options = {}) {
   prompt(constants.questions.mode_question)
     .then(create_answers => {
       switch (create_answers.mode) {

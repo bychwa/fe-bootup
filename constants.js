@@ -3,6 +3,7 @@ const MODES = {
   UPDATE: 'Update current fe react app',
   EXIT: 'Exit'
 }
+
 module.exports = {
   templateUrl: 'https://github.com/bychwa/react-frontend-bootstrap-app.git',
   modes: MODES,
